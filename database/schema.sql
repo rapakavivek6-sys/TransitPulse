@@ -1,0 +1,81 @@
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  role VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS routes (
+  id VARCHAR(20) PRIMARY KEY,
+  code VARCHAR(50),
+  name VARCHAR(100) NOT NULL,
+  mode VARCHAR(50),
+  direction_a VARCHAR(50),
+  direction_b VARCHAR(50),
+  active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE IF NOT EXISTS stops (
+  id VARCHAR(20) PRIMARY KEY,
+  route_id VARCHAR(20) REFERENCES routes(id),
+  name VARCHAR(100) NOT NULL,
+  sequence INT NOT NULL,
+  lat DOUBLE PRECISION,
+  lon DOUBLE PRECISION
+);
+
+CREATE TABLE IF NOT EXISTS buses (
+  id VARCHAR(20) PRIMARY KEY,
+  route_id VARCHAR(20) REFERENCES routes(id),
+  direction VARCHAR(50),
+  type VARCHAR(50),
+  capacity INT NOT NULL,
+  occupancy INT DEFAULT 0,
+  boarded_total INT DEFAULT 0,
+  terminated_total INT DEFAULT 0,
+  left_behind_total INT DEFAULT 0,
+  current_stop_index INT DEFAULT 0,
+  status VARCHAR(50),
+  next_eta_min INT,
+  on_break BOOLEAN DEFAULT FALSE,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS traffic (
+  id SERIAL PRIMARY KEY,
+  level VARCHAR(50),
+  multiplier DOUBLE PRECISION,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS alerts (
+  id BIGSERIAL PRIMARY KEY,
+  type VARCHAR(50),
+  message TEXT,
+  bus_id VARCHAR(20),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS underground_stations (
+  id VARCHAR(20) PRIMARY KEY,
+  name VARCHAR(100),
+  line VARCHAR(100),
+  lat DOUBLE PRECISION,
+  lon DOUBLE PRECISION
+);
+
+CREATE TABLE IF NOT EXISTS overground_stations (
+  id VARCHAR(20) PRIMARY KEY,
+  name VARCHAR(100),
+  line VARCHAR(100),
+  lat DOUBLE PRECISION,
+  lon DOUBLE PRECISION
+);
+
+CREATE TABLE IF NOT EXISTS local_train_timings (
+  id SERIAL PRIMARY KEY,
+  station_name VARCHAR(100),
+  destination VARCHAR(100),
+  departure VARCHAR(20),
+  platform VARCHAR(20)
+);

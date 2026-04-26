@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - TransitPulse</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    const user = localStorage.getItem("user");
+
+    if (user) {
+      const parsed = JSON.parse(user);
+
+      if (parsed.role === "controller") window.location.href = "/controller.html";
+      else if (parsed.role === "manager") window.location.href = "/manager.html";
+      else if (parsed.role === "ambassador") window.location.href = "/ambassador.html";
+      else if (parsed.role === "admin") window.location.href = "/index.html";
+    }
+  </script>
+</head>
+<body>
+  <header><h1>Login</h1></header>
+
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>Secure Access</h2>
+        <p>Use a role account to enter the correct dashboard.</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <form onsubmit="login(event)">
+          <label>Username</label>
+          <input id="username" required>
+
+          <label>Password</label>
+          <input id="password" type="password" required>
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Test Accounts</h3>
+        <p>controller1 / pass123</p>
+        <p>manager1 / pass123</p>
+        <p>ambassador1 / pass123</p>
+        <p>admin / admin123</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

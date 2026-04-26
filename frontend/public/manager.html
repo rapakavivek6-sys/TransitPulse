@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manager Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+  const user = localStorage.getItem("user");
+  if (!user) {
+    window.location.href = "/login.html";
+  }
+</script>
+
+<script src="app.js"></script>
+<script>
+  requireRole(["manager", "admin"]);
+</script>
+
+</head>
+<body>
+  <header><h1>Manager Dashboard</h1>
+  <button onclick="logout()">Logout</button>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>Network Analytics</h2>
+        <p>Track flow, occupancy pressure, and operational health across the system.</p>
+      </div>
+    </section>
+
+    <div id="summary"></div>
+
+    <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start;">
+      <div style="flex:1; max-width:350px;">
+        <h3>Passenger Flow</h3>
+        <div style="height:250px;">
+          <canvas id="passengerChart"></canvas>
+        </div>
+      </div>
+
+      <div style="flex:1; max-width:350px;">
+        <h3>Left Behind</h3>
+        <div style="height:250px;">
+          <canvas id="leftBehindChart"></canvas>
+        </div>
+      </div>
+
+      <div style="flex:1; max-width:350px;">
+        <h3>Route Distribution</h3>
+        <div style="height:250px;">
+          <canvas id="routeChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+  <script>
+    loadManagerPage();
+    setInterval(loadManagerPage, 10000);
+  </script>
+
+  <script>
+  loadManagerPage();
+
+  // 🔄 auto refresh every 10 seconds
+  setInterval(loadManagerPage, 10000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+  const user = localStorage.getItem("user");
+  if (!user) {
+    window.location.href = "/login.html";
+  }
+</script>
+
+<script src="app.js"></script>
+<script>
+  requireRole(["controller", "manager", "admin"]);
+</script>
+
+</head>
+<body>
+  <header><h1>Passenger Stop QR Gallery</h1>
+  <button onclick="logout()">Logout</button>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>All Stop QR Codes</h2>
+        <p>Scan a QR code to open the stop-specific passenger page instantly.</p>
+      </div>
+    </section>
+
+    <div id="qrGallery" class="qr-grid"></div>
+  </main>
+  <script src="app.js"></script>
+  <script>
+    loadQrGalleryPage();
+  </script>
+</body>
+</html>

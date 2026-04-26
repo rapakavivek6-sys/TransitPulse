@@ -1,0 +1,7 @@
+id,route_id,current_stop_index,occupancy,capacity,status,next_eta_min,traffic_level,traffic_multiplier,updated_at
+BUS1,R1,0,83,85,in_service,2,moderate,1.0,2026-04-15 01:12:18.505922
+BUS2,R1,4,39,40,in_service,3,moderate,1.0,2026-04-15 01:12:18.509491
+BUS3,R2,0,85,85,in_service,3,moderate,1.0,2026-04-15 01:12:18.513365
+BUS4,R2,0,40,40,in_service,2,moderate,1.0,2026-04-15 01:12:18.516177
+BUS5,R3,0,84,85,in_service,3,moderate,1.0,2026-04-15 01:12:18.518264
+BUS6,R3,0,40,40,in_service,4,moderate,1.0,2026-04-15 01:12:18.519846

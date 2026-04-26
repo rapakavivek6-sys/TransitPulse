@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Controller Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+  const user = localStorage.getItem("user");
+  if (!user) {
+    window.location.href = "/login.html";
+  }
+</script>
+
+<script src="app.js"></script>
+<script>
+  requireRole(["controller", "admin"]);
+</script>
+
+</head>
+<body>
+  <header><h1>Controller Dashboard</h1>
+  <button onclick="logout()">Logout</button>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>Operations Control</h2>
+        <p>Live monitoring, predictive insights, and dispatch decisions in one place.</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Simulation Controls</h3>
+
+        <button onclick="runSimulationNow()">Run Simulation Now</button>
+        <button onclick="generateDispatchRecommendations()">Generate Dispatch Recommendations</button>
+
+        <br><br>
+
+        <label>Traffic Level</label>
+        <select id="trafficLevelSelect">
+          <option value="low">Low</option>
+          <option value="moderate">Moderate</option>
+          <option value="high">High</option>
+          <option value="severe">Severe</option>
+        </select>
+        <button onclick="setTrafficLevel()">Update Traffic</button>
+
+        <br><br>
+
+        <label>Simulation Speed</label>
+        <select id="simulationSpeedSelect">
+          <option value="10000">10 seconds</option>
+          <option value="30000">30 seconds</option>
+          <option value="60000">60 seconds</option>
+        </select>
+        <button onclick="setSimulationSpeed()">Update Speed</button>
+      </div>
+
+      <div id="traffic"></div>
+    </div>
+
+    <h2>Buses</h2>
+    <div id="buses" class="grid"></div>
+
+    <h2>Operations Insights</h2>
+
+<div class="grid">
+  <div>
+    <h3>Alerts</h3>
+    <div id="alerts"></div>
+  </div>
+
+  <div>
+    <h3>Dispatch Recommendations</h3>
+    <div id="dispatchRecommendations"></div>
+  </div>
+</div>
+  </main>
+  <script src="app.js"></script>
+  <script>
+    loadControllerPage();
+    setInterval(loadControllerPage, 10000);
+
+  </script>
+  <button onclick="logout()">Logout</button>
+
+  <script>
+  loadControllerPage();
+
+  // 🔄 auto refresh every 10 seconds
+  setInterval(loadControllerPage, 10000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passenger ETA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header><h1>Passenger ETA</h1>
+  <button onclick="logout()">Logout</button>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>Live Stop Information</h2>
+        <p>Get next bus ETA, predicted ETA, and occupancy risk for the selected stop.</p>
+      </div>
+    </section>
+
+    <div class="card" id="stopSelectorCard">
+      <label>Select Stop</label>
+      <select id="stopSelect" onchange="loadPassengerPage()">
+        <option value="S1">Alpha Stop (R1)</option>
+        <option value="S2">Bravo Stop (R1)</option>
+        <option value="S3">Charlie Stop (R1)</option>
+        <option value="S4">Delta Stop (R1)</option>
+        <option value="S5">Echo Stop (R1)</option>
+        <option value="S6">Foxtrot Stop (R2)</option>
+        <option value="S7">Golf Stop (R2)</option>
+        <option value="S8">Hotel Stop (R2)</option>
+        <option value="S9">India Stop (R3)</option>
+        <option value="S10">Juliet Stop (R3)</option>
+        <option value="S11">Kilo Stop (R3)</option>
+      </select>
+    </div>
+
+    <div id="etaResult"></div>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("stopId")) {
+      const selectorCard = document.getElementById("stopSelectorCard");
+      if (selectorCard) selectorCard.style.display = "none";
+    }
+
+    loadPassengerPage();
+    setInterval(loadPassengerPage, 10000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambassador Interface</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+  const user = localStorage.getItem("user");
+  if (!user) {
+    window.location.href = "/login.html";
+  }
+</script>
+
+<script src="app.js"></script>
+<script>
+  requireRole(["ambassador", "admin"]);
+</script>
+
+</head>
+<body>
+  <header><h1>Ambassador Interface</h1>
+  <button onclick="logout()">Logout</button>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="card">
+        <h2>Passenger Count Update</h2>
+        <p>Submit boarded, terminated, and left-behind values for a selected bus.</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <div class="card">
+        <form onsubmit="submitAmbassadorForm(event)">
+          <label>Bus ID</label>
+          <select id="busId">
+            <option value="BUS1">BUS1</option>
+            <option value="BUS2">BUS2</option>
+            <option value="BUS3">BUS3</option>
+            <option value="BUS4">BUS4</option>
+            <option value="BUS5">BUS5</option>
+            <option value="BUS6">BUS6</option>
+          </select>
+
+          <label>Boarded</label>
+          <input id="boarded" type="number" min="0" value="0" required>
+
+          <label>Terminated</label>
+          <input id="terminated" type="number" min="0" value="0" required>
+
+          <label>Left Behind</label>
+          <input id="leftBehind" type="number" min="0" value="0" required>
+
+          <button type="submit">Submit Update</button>
+        </form>
+      </div>
+
+      <div id="result"></div>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

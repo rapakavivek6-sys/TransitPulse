@@ -1,0 +1,7 @@
+id,route_id,current_stop_index,occupancy,capacity,status,next_eta_min,traffic_level,traffic_multiplier,predicted_next_eta
+BUS1,R1,0,83,85,in_service,2,moderate,1.0,2.94
+BUS2,R1,4,39,40,in_service,3,moderate,1.0,2.9
+BUS3,R2,0,85,85,in_service,3,moderate,1.0,2.73
+BUS4,R2,0,40,40,in_service,2,moderate,1.0,2.49
+BUS5,R3,0,84,85,in_service,3,moderate,1.0,3.22
+BUS6,R3,0,40,40,in_service,4,moderate,1.0,3.48
